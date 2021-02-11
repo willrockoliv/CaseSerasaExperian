@@ -20,8 +20,6 @@
 - Solução para Deploy em produção;
 - Criatividade.
 
----
-
 ## 2. Solução:
 
   A aplicação foi desenvolvida em Python, utilizando [Pyspark](https://spark.apache.org/docs/latest/api/python/index.html) 
