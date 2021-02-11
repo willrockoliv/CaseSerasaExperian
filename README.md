@@ -24,7 +24,7 @@
 
 ## 2. Solução:
 
-A aplicação foi desenvolvida em Python, utilizando [Pyspark](https://spark.apache.org/docs/latest/api/python/index.html) 
+  A aplicação foi desenvolvida em Python, utilizando [Pyspark](https://spark.apache.org/docs/latest/api/python/index.html) 
 e a biblioteca [**Tweepy**](https://www.tweepy.org/), uma biblioteca para Python que facilita a conexão com a API do Twitter.
 
 A aplicação está dividida em duas etapas:
@@ -32,7 +32,7 @@ A aplicação está dividida em duas etapas:
 **1º Etapa:** Realizar o streaming de tweets em tempo real, sendo esse o código do arquivo [2.TwitterAPIListener.py](https://github.com/willrockoliv/CaseSerasaExperian/blob/master/2.TwitterAPIListener.py),
 onde dado uma lista de *keywords* a serem buscados em tweets, a aplicação irá:
 - Realizar a conexão com a API de streaming do Twitter;
-- Baixar os tweets em tempo real
+- Baixar os tweets em tempo real;
 - Salvá-los em uma *layer1* de dados de forma particionada e em arquivos no formato parquet.
 
 **2º Etapa:** Criar um Data Warehouse com os dados salvos na *layer1*, sendo esse o código [3.DataWarehouse.py](https://github.com/willrockoliv/CaseSerasaExperian/blob/master/3.DataWarehouse.py),
@@ -46,11 +46,11 @@ no qual sua função é a cada 60 minutos:
 
 ## 3. O que falta:
 
-- A implementação de um orquestrador do fluxo de dados, como por exemplo o Airflow sugerido no case
-- A criação de um ambiente Docker/Compose para deploy da aplicação
+- A implementação de um orquestrador do fluxo de dados, como por exemplo o Airflow sugerido no case;
+- A criação de um ambiente Docker/Compose para deploy da aplicação.
 
 ## 4. O que era pretendido incluir:
-- Armazenamento na Amazon S3
+- Armazenamento na Amazon S3.
 
 ## 5. Arquitetura pretendida:
 ![Arquitetura](https://github.com/willrockoliv/CaseSerasaExperian/blob/master/Arquitetura.png)
