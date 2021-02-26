@@ -110,29 +110,29 @@ if __name__ == "__main__":
     start = time.time()
     while True:    
         print("Timer:", time.time() - start)
-        if (time.time() - start) > persist_time:
-            today = datetime.now() - timedelta(hours=1)
-            partitions = {
-                "etl_load_partition_year":today.year,
-                "etl_load_partition_month":today.month if today.month > 10 else "0"+str(today.month),
-                "etl_load_partition_day":today.day if today.day > 10 else "0"+str(today.day),
-                "etl_load_partition_hour":today.hour if today.hour > 10 else "0"+str(today.hour)
-            }
+        # if (time.time() - start) > persist_time:
+        today = datetime.now() - timedelta(hours=1)
+        partitions = {
+            "etl_load_partition_year":today.year,
+            "etl_load_partition_month":today.month if today.month > 10 else "0"+str(today.month),
+            "etl_load_partition_day":today.day if today.day > 10 else "0"+str(today.day),
+            "etl_load_partition_hour":today.hour if today.hour > 10 else "0"+str(today.hour)
+        }
 
-            print("loading data of past hour...")
-            print("partitions:", partitions)
-            tweets = dw.read_layer1(table_name="tweets", partitions=partitions)
-            print("load:", tweets.count())
-            
-            print("saving fact_tweet...")
-            fact_tweet = dw.fact_tweet(tweets)
-            dw.write_layer2(table_name="fact_tweet", table=fact_tweet, partitions=["created_at_partition_year",
-                                                                                "created_at_partition_month",
-                                                                                "created_at_partition_day",
-                                                                                "created_at_partition_hour",])
-            
-            print("saving dim_user...")
-            dim_user = dw.dim_user(tweets)
-            dw.write_layer2(table_name="dim_user", table=dim_user)
+        print("loading data of past hour...")
+        print("partitions:", partitions)
+        tweets = dw.read_layer1(table_name="tweets", partitions=partitions)
+        print("load:", tweets.count())
+        
+        print("saving fact_tweet...")
+        fact_tweet = dw.fact_tweet(tweets)
+        dw.write_layer2(table_name="fact_tweet", table=fact_tweet, partitions=["created_at_partition_year",
+                                                                            "created_at_partition_month",
+                                                                            "created_at_partition_day",
+                                                                            "created_at_partition_hour",])
+        
+        print("saving dim_user...")
+        dim_user = dw.dim_user(tweets)
+        dw.write_layer2(table_name="dim_user", table=dim_user)
 
-            start = time.time()
+        start = time.time()

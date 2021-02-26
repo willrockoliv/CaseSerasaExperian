@@ -183,10 +183,10 @@ if __name__ == "__main__":
     spark = SparkSession.builder.getOrCreate()
     sqlContext = SQLContext(sc)
     
-    keywords = ["COVID"]
-    languages=["pt"]
+    keywords = ["COVID", "BBB"]
+    languages=["pt", "en"]
     timeout = 60 # não funciona mto bem
-    persist_time=60
+    persist_time = 10
     path = "./layer1/tweets"
 
     while True:
